@@ -1,5 +1,5 @@
 # BD1_213_351_643_671
 
-Kohav: Wired In\n
-Hanea: Wired In\n
+Kohav: Wired In 
+Hanea: Wired In 
 Rohan: Wired In
