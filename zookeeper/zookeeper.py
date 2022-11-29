@@ -1,7 +1,6 @@
 import socket
 import select
 from leaderselection import *
-activepartitions=[]
 
 socket_1 = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 socket_2 = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
