@@ -1,0 +1,17 @@
+B.D. Project Workflow
+
+1) Connect Producers to Master Producers, Consumers to Master Consumers and 3 Brokers to Master Brokers via ssh.
+
+2) Connect Master Containers, Zookeeper container, User Container to Master Broker container via ssh again. The Zookeeper container is inside the Master Broker container as well.
+
+3) User specifies number of producers and containers in user container via commandline argument. n number of producers and consumers and created instantaneously under the master containers. User container sends this user input to Master Prod Cons containers.
+
+4) User inputs 'broker create', refers to broker.bin.
+
+---------------------TO BE CONTINUED-----------------------------------
+
+ERROR CODES:
+
+1) broker folder failure: 500
+2) broker topic failure: 100
+3) broker 
