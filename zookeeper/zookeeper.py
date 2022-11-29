@@ -1,5 +1,7 @@
 import socket
 import select
+from leaderselection import *
+activepartitions=[]
 
 socket_1 = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 socket_2 = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -13,7 +15,7 @@ poller = select.poll()
 poller.register(socket_1, select.POLLIN)
 poller.register(socket_2, select.POLLIN)
 poller.register(socket_3, select.POLLIN)
-
+init_leader()
 while 1:
     evts = poller.poll(5000)
     for sock, evt in evts:
@@ -24,16 +26,19 @@ while 1:
                     print("Broker1 Alive")
                 elif not data1:
                     print("Broker1 Dead")
+                    switch_leader(1)
             if sock == socket_2.fileno():
                 data2 = socket_2.recvfrom(4096)
                 if data2:
                     print("Broker2 Alive")
                 elif not data2:
                     print("Broker2 Dead")
+                    switch_leader(2)
             if sock == socket_3.fileno():
                 data3 = socket_3.recvfrom(4096)
                 if data3:
                     print("Broker3 Alive")
                 elif not data3:
                     print("Broker3 Dead")
+                    switch_leader(3)
             
