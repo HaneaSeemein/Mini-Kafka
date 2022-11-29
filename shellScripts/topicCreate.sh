@@ -7,17 +7,20 @@ p=$1
 
 a() {
 	cd	
-	mkdir "brokerFS" && cd "$_" || return $BROKER_FAIL
-	mkdir $p && cd "$_" || return $TOPIC_FAIL 
+	mkdir -p "brokerFS" && cd "$_" || return $BROKER_FAIL
+	mkdir -p $p && cd "$_" || return $TOPIC_FAIL 
 	echo "Topic $p created successfully."
 }
 
 a
+l=$?
 
-if [[ $a == $BROKER_FAIL ]] 
+cd ~/Desktop/BD_Project/shellScripts
+
+if [[ $l == $BROKER_FAIL ]] 
 then
 	echo "BROKER FS CREATION FAILED"
-elif [[ $a == $TOPIC_FAIL ]]
+elif [[ $l == $TOPIC_FAIL ]]
 then
 	echo "TOPIC CREATION FAILED"
 fi
