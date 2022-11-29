@@ -1,6 +1,29 @@
 import socket
 import select
-from leaderselection import *
+path = "Big Data/Brokers"
+leader = [0,0,0,0]
+activepartitions=[0,0,0,0]
+
+def update():
+    k=0
+    print(leader)
+    for i in leader:
+        if(i>0):
+            print("partition: "+str(k)+" ------>broker: "+str(i)+"")
+            activepartitions[k]=path+'/part'+str(k)+'_'+str(i)
+        k=k+1
+def init_leader():
+    for i in range(4):
+        leader[i]=i
+    update()
+def switch_leader(failedbroker):
+    for i in range(len(leader)): 
+        if(leader[i]==failedbroker):
+            nextbroker = (leader[i]+1)%4
+            while(leader[nextbroker]<1):
+                nextbroker =(nextbroker+1)%4
+            leader[i]=nextbroker
+    update()
 
 socket_1 = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 socket_2 = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
