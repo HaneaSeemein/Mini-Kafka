@@ -1,7 +1,35 @@
 import socket
 import select
 from datetime import datetime
+path = "Big Data/Brokers"
+# change this path to whatever decided
+leader = [0,0,0,0]
+activepartitions=[0,0,0,0]
+# leader's index is the partition number
+# and the value is the broker number
 
+def update():
+    k=0
+    print(leader)
+    for i in leader:
+        if(i>0):
+            print("partition: "+str(k)+" ------>broker: "+str(i)+"")
+            activepartitions[k]=path+'/part'+str(k)+'_'+str(i)
+        k=k+1
+
+def init_leader():
+    for i in range(4):
+        leader[i]=i
+    update()
+
+def switch_leader(failedbroker):
+    for i in range(len(leader)): 
+        if(leader[i]==failedbroker):
+            nextbroker = (leader[i]+1)%4
+            while(leader[nextbroker]<1):
+                nextbroker =(nextbroker+1)%4
+            leader[i]=nextbroker
+    update()
 socket_1 = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 socket_2 = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 socket_3 = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -28,7 +56,7 @@ alive3 = 0
 
 now = datetime.now()
 start_time = now.second
-
+init_leader()
 while 1:
     #every 60 seconds check the health of all brokers
     #run leader selection for dead brokers
@@ -42,11 +70,14 @@ while 1:
         #print("alive3: ",alive3)
         if alive1 == 0:
             print("run leader selection for broker1")
+            switch_leader(1)
         if alive2 == 0:
             print("run leader selection for broker2")
+            switch_leader(2)
         if alive3 == 0:
             print("run leader selection for broker3")
-        
+            switch_leader(3)
+
     evts = poller.poll(20)
     # alive1 = 0
     # alive2 = 0
