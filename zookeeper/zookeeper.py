@@ -58,32 +58,38 @@ def alive(socket):
 
 while 1:
     evts = poller.poll(5000)
-    if((timer1-time.time())>10):
-        switch_leader(1)
-        timer1=0
-    if(timer2-time.time()>10):
-        switch_leader(2)
-        timer2=0
-    if(timer3-time.time()>10):
-        switch_leader(3)
-        timer3=0
     for sock, evt in evts:
+        if((timer1-time.time())>10):
+            switch_leader(1)
+            timer1=0
+        if(timer2-time.time()>10):
+            switch_leader(2)
+            timer2=0
+        if(timer3-time.time()>10):
+            switch_leader(3)
+            timer3=0
         if evt and select.POLLIN:
             if sock == socket_1.fileno():
                 data1 = socket_1.recvfrom(4096)
-                if data1:
-                    print("Broker1 Alive")
+                if (data1=="alive"):
+                    print("1")
                     alive(1)
+                elif(data1=="dead"):
+                    switch_leader(1)
 
             if sock == socket_2.fileno():
                 data2 = socket_2.recvfrom(4096)
-                if data2:
-                    print("Broker2 Alive")
+                if (data2=="alive"):
+                    print("22")
                     alive(2)
+                elif(data2=="dead"):
+                    switch_leader(1)
             if sock == socket_3.fileno():
                 data3 = socket_3.recvfrom(4096)
-                if data3:
-                    print("Broker3 Alive")
-                    alive(3)
+                if (data3=="alive"):
+                    print("333")
+                    # alive(3)
+                elif(data3=="dead"):
+                    switch_leader(3)
 
             
