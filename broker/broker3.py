@@ -1,7 +1,6 @@
 import socket
+import time
 from time import sleep
 socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-while 1:
-    socket.sendto(b'hello', ('127.0.0.1', 9999))
-    print('ALIVE 3')
-    sleep(1)
+
+killer=[-1, -1, -1, -1]
