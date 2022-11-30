@@ -1,0 +1,37 @@
+version: '3'
+services:
+     broker1:
+          image: 'broker1_image'
+          ports:
+               - '9997:9997'
+          networks:
+               heartbeat_monitor:
+                    ipv4_address: 172.22.0.1
+     broker2:
+          image: 'broker2_image'
+          ports:
+               - '9998:9998'
+          networks:
+               heartbeat_monitor:
+                    ipv4_address: 172.22.0.2
+     broker3:
+          image: 'broker2_image'
+          ports:
+               - '9996:9996'
+          networks:
+               heartbeat_monitor:
+                    ipv4_address: 172.22.0.3
+     zookeeper:
+          image: 'zookeeper_image'
+          ports:
+               - '9999:9996'
+               - '9998:9998'
+               - '9997:9997'
+          networks:
+               heartbeat_monitor:
+                    ipv4_address: 172.22.0.4
+networks:
+     heartbeat_monitor:
+          ipam:
+               config:
+                    - subnet: 172.22.0.0/24
