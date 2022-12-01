@@ -5,7 +5,7 @@ socket_1 = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 socket_2 = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 socket_3 = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
-socket_1.bind(('172.22.0.1', 9997))
+socket_1.bind(('172.22.0.5', 9997))
 socket_2.bind(('172.22.0.2', 9998))
 socket_3.bind(('172.22.0.3', 9999))
 
