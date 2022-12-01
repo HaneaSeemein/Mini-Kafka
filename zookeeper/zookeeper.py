@@ -82,7 +82,7 @@ while 1:
     # alive2 = 0
     # alive3 = 0
     for sock, evt in evts:
-
+        print(iterations)
         iterations = iterations + 1
         if evt and select.POLLIN:
             if sock == socket_1.fileno():
