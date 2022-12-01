@@ -69,7 +69,7 @@ while 1:
         start_time = current_time
         if alive1 == 0:
             print("run leader selection for broker1")
-            switch_leader(1)
+            # switch_leader(1)
         if alive2 == 0:
             print("run leader selection for broker2")
             # switch_leader(2)
@@ -79,8 +79,8 @@ while 1:
 
     evts = poller.poll(20)
     alive1 = 0
-    # alive2 = 0
-    # alive3 = 0
+    alive2 = 0
+    alive3 = 0
     for sock, evt in evts:
         print(iterations)
         iterations = iterations + 1
