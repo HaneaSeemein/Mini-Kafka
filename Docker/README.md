@@ -10,3 +10,6 @@
 
 # to run the containers with networking with one another (run in the folder of docker-compose.yml)
 docker-compose up -d 
+
+Then run the containers using
+docker run <image_name>

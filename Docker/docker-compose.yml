@@ -6,7 +6,7 @@ services:
                - '9997:9997'
           networks:
                heartbeat_monitor:
-                    ipv4_address: 172.22.0.1
+                    ipv4_address: 172.22.0.5
      broker2:
           image: 'broker2_image'
           ports:
@@ -25,8 +25,8 @@ services:
           image: 'zookeeper_image'
           ports:
                - '9999:9996'
-               - '9998:9998'
-               - '9997:9997'
+               - '9995:9998'
+               - '9994:9997'
           networks:
                heartbeat_monitor:
                     ipv4_address: 172.22.0.4
