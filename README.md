@@ -1,12 +1,6 @@
-# BD1_213_351_643_671
+# Mini Kafka
 
-### Are we wired in?
-
-Hanea: Wired In <br />
-Rohan: Wired In <br />
-Kohav: Wired In <br />
-Sailaja: Wired In <br />
-
+The Mini-Kafka Docker project is a containerized solution that emulates the essential components of Apache Kafka, offering a simplified yet powerful messaging system. It harnesses the capabilities of Docker containers to effortlessly deploy a Kafka broker and ZooKeeper, the coordination service. 
 ### Checkpoints:
 
 - [x] Topic Creation Shell Script added.
